@@ -1,0 +1,40 @@
+# multiple versions?
+# wiele uzytkowników ma różne profile ( różne wersje / zestawy pakietów )
+
+# http://nixos.org/nix/manual
+apt-get install curl sudo
+curl https://nixos.org/nix/install | sh
+
+nix-env -qa # listing dostępnych
+nix-env -i nixops # instalacja
+nix-env -q # listing zainstalowanych
+nix-env -e nixops # usuwanie
+nix-env --list-generations #
+nix-env --rollback         # każda operacja atomiczna, możliwe przełączanie między wersjami a także rollback
+
+# nix-env -f ~/foo.nix -i '.*'
+# nix-env -i /nix/store/y3cgx0xj1p4iv9x0pnnmdhr8iyg741vk-gcc-3.4.3
+nix-env -p /nix/var/nix/profiles/project1 -i python3 # zainstaluj pakiet do profilu w katalogu /tmp/project1
+nix-env -p /nix/var/nix/profiles/project2 -i vim # zainstaluj pakiet do profilu w katalogu /tmp/project2
+nix-env -q # jak widac pakiety nie są zainstalowane w obecnym profilu
+nix-env --switch-profile /tmp/project1 # profile możemy w każdym momencie zmieniać
+nix-env -q
+nix-env --switch-profile /nix/var/nix/profiles/default # wróćmy jednak do profilu domyślnego
+
+# jeśli chcemy instalować specyficzne wersje przy pomocy przeglądarki, możemy przypisać
+# application/nix-package do $(which nix-install-package)
+curl -O http://hydra.nixos.org/build/32565365/nix/pkg/gcc-wrapper-4.9.3-x86_64-linux.nixpkg
+nix-install-package gcc-wrapper-4.9.3-x86_64-linux.nixpkg
+nix-env -q
+nix-env --rollback
+
+nix-shell -p python2 
+python --version
+exit
+
+nix-shell -p python3
+python --version
+exit
+
+# TODO: development
+# TODO: build farmy

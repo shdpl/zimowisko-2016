@@ -1,0 +1,8 @@
+# http://nixos.org/nixops/manual/
+nixops create deployment.nix -d zimowisko
+nixops list
+nixops deploy -d zimowisko
+nixops info -d zimowisko
+nixops check -d zimowisko
+#nixops show-option  todo
+nixops ssh test1

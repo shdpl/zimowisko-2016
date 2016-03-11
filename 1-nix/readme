@@ -21,8 +21,8 @@ nix-env --switch-profile /tmp/project1 # profile możemy w każdym momencie zmie
 nix-env -q
 nix-env --switch-profile /nix/var/nix/profiles/default # wróćmy jednak do profilu domyślnego
 
-# jeśli chcemy instalować specyficzne wersje przy pomocy przeglądarki, możemy przypisać
-# application/nix-package do $(which nix-install-package)
+# instalacja binarek przez http ( odpowiednik .deb )
+nix-install-package --non-interactive --url http://hydra.nixos.org/build/32565365/nix/pkg/gcc-wrapper-4.9.3-x86_64-linux.nixpkg
 curl -O http://hydra.nixos.org/build/32565365/nix/pkg/gcc-wrapper-4.9.3-x86_64-linux.nixpkg
 nix-install-package gcc-wrapper-4.9.3-x86_64-linux.nixpkg
 nix-env -q

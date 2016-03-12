@@ -1,0 +1,26 @@
+nixops set-args -d zimowisko --arg nrMachines 3 && nixops deploy -d zimowisko
+nix-env -i nix-repl
+nix-repl
+
+1+1
+
+let a = 2*2; in [a a a]
+
+let a = (builtins.mul 2 2); in {value=a;}
+
+let
+	mul = a: b: a*b;
+	person = {name="Anna"; kids=3; value=500;};
+in
+	(mul person.kids person.value)
+with import <nixpkgs/lib>; (range 1 5)
+
+with import <nixpkgs/lib>;
+	let mulString=n: toString n;
+in
+	(map mulString (range 1 3))
+
+with import <nixpkgs/lib>;
+let
+	mulString=n: toString n;
+in (concatStringsSep "," (map mulString (range 1 3)))

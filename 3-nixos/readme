@@ -1,0 +1,5 @@
+# https://nixos.org/nixos/manual/
+nixops reboot -d zimowisko
+# nix-build release.nix -A tests.none_backend
+# nixos-rebuild build-vm && ./result/bin/run-*-vm
+# nix-build -A iso_minimal.x86_64-linux $NIXPKGS/nixos/release.nix

@@ -10,7 +10,12 @@ nix-env -i nixops # instalacja
 nix-env -q # listing zainstalowanych
 nix-env -e nixops # usuwanie
 nix-env --list-generations #
-nix-env --rollback         # każda operacja atomiczna, możliwe przełączanie między wersjami a także rollback
+nix-env --rollback         # możliwe przełączanie między wersjami a także rollback
+ldd $(which nixops)        # zależności od konkretnego wydania z konkretnymi parametrami ( brak dll hell )
+ls -l ~/.nix-profile       # commity praktycznie atomiczne
+nix-store -q --references $(which nixops) # od czego zależy pakiet?
+nix-store -q --referrers $(which nixops) # co zależy od pakietu?
+nix-store -q --tree ~/.nix-profile # od czego zależy... nasz profil?
 
 # nix-env -f ~/foo.nix -i '.*'
 # nix-env -i /nix/store/y3cgx0xj1p4iv9x0pnnmdhr8iyg741vk-gcc-3.4.3

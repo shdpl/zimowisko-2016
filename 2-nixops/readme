@@ -4,5 +4,6 @@ nixops list
 nixops deploy -d zimowisko
 nixops info -d zimowisko
 nixops check -d zimowisko
-#nixops show-option  todo
-nixops ssh test1
+nixops ssh -d zimowisko test1 uname -a
+nixops show-physical -d zimowisko
+nixops show-option -d zimowisko test1 system.nixosRelease
